@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EduVault — हिंदी व्याकरण और सामान्य ज्ञान</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<meta name="description" content="हिंदी व्याकरण और सामान्य ज्ञान — मुफ्त नोट्स और प्रीमियम क्विज़" />
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="index.html">📚 EduVault</a>
+<nav class="main-nav">
+<a href="index.html">होम</a>
+<a href="grammar.html">हिंदी व्याकरण</a>
+<a href="gk.html">सामान्य ज्ञान</a>
+<a href="archive.html">पुराने लेख</a>
+</nav>
+</div>
+</header>
+
+
+<main class="container">
+<section class="hero">
+<h1>वाक्य, व्याकरण और सामान्य ज्ञान — सरल, हिंदी में</h1>
+<p class="lead">फ्री नोट्स, उदाहरण और अभ्यास प्रश्न। प्रीमियम क्विज़ और PDF डाउनलोड के लिए नीचे जाएँ।</p>
+<div class="cta-row">
+<a class="btn primary" href="grammar.html">हिंदी व्याकरण पढ़ें</a>
+<a class="btn" href="gk.html">सामान्य ज्ञान करें</a>
+</div>
+</section>
+
+
+<section class="features">
+<article>
+<h3>📘 बेसिक नोट्स</h3>
+<p>साफ़, उदाहरण के साथ व्याख्या — वाक्य, उपवाक्य, संधि, समास और बहुत कुछ।</p>
+</article>
+
+
+<article>
+<h3>📝 अभ्यास</h3>
+<p>प्रैक्टिस क्विज़ — मुफ्त और प्रीमियम दोनों।</p>
+</article>
+
+
+<article>
+<h3>💸 प्रीमियम सामग्री</h3>
+<p>गहन PDF पैक और समयबद्ध टेस्ट — Gumroad / BuyMeACoffee के माध्यम से।</p>
+</article>
+</section>
+
+
+<section class="latest">
+<h2>नवीनतम सबक</h2>
+<div id="latest-list">Loading...</div>
+</section>
+
+
+<section class="monetize">
+<h2>प्रीमियम पैक</h2>
+<p>अधिक अभ्यास पेपर्स और PDF — <a target="_blank" rel="noopener" href="https://gumroad.com/">Gumroad</a> या <a target="_blank" rel="noopener" href="https://www.buymeacoffee.com/">BuyMeACoffee</a> पर उपलब्ध।</p>
+<a class="btn primary" href="https://buymeacoffee.com/yourid" target="_blank">👉 अभी खरीदें</a>
+</section>
+</main>
+
+
+<footer class="site-footer">
+<div class="container">
+<p>© 2025 EduVault · <a href="https://github.com/yourgithub/eduvault" target="_blank" rel="noopener">GitHub</a></p>
+</div>
+</footer>
+
+
+<script>
+// Simple client-side loader for lessons.json
+async function loadLatest() {
+try {
+const res = await fetch('data/lessons.json');
+const data = await res.json();
+const latest = data.lessons.slice(0, 4);
+const container = document.getElementById('latest-list');
+container.innerHTML = '';
+latest.forEach(l => {
+const el = document.createElement('div');
+el.className = 'lesson-card';
+el.innerHTML = `<h4>${l.title}</h4><p>${l.short}</p><a class="btn small" href="${l.page || 'grammar.html'}">और पढ़ें</a>`;
+container.appendChild(el);
+});
+} catch (e) {
+console.error(e);
+document.getElementById('latest-list').innerText = 'कोई डेटा उपलब्ध नहीं है।';
+}
+}
+loadLatest();
+</script>
+</body>
+</html>
