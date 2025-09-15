@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>हिंदी व्याकरण — EduVault</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<header class="site-header">
+<div class="container nav-wrap">
+<a class="brand" href="index.html">📚 EduVault</a>
+<nav class="main-nav">
+<a href="index.html">होम</a>
+<a href="grammar.html">हिंदी व्याकरण</a>
+<a href="gk.html">सामान्य ज्ञान</a>
+<a href="archive.html">पुराने लेख</a>
+</nav>
+</div>
+</header>
+
+
+<main class="container">
+<h1>हिंदी व्याकरण</h1>
+<p class="lead">नीचे कुछ बेसिक टॉपिक्स और उदाहरण दिए गए हैं।</p>
+
+
+<section id="lessons"></section>
+
+
+<aside class="sidebar">
+<div class="card">
+<h3>अभ्यास क्विज</h3>
+<p>मुफ्त क्विज: 10 प्रश्न। प्रीमियम: 50 प्रश्न और समाधान।</p>
+<a class="btn" href="#">फ्री क्विज़ शुरू करें</a>
+</div>
+
+
+<div class="card">
+<h3>प्रीमियम PDF</h3>
+<p>नमूना PDF मुफ्त। पूरा पैक खरीदें।</p>
+<a class="btn primary" href="https://gumroad.com/yourid" target="_blank">खरीदें</a>
+</div>
+</aside>
+</main>
+
+
+<footer class="site-footer">
+<div class="container">
+<p>© 2025 EduVault</p>
+</div>
+</footer>
+
+
+<script>
+async function renderLessons() {
+try {
+const res = await fetch('data/lessons.json');
+const data = await res.json();
+const container = document.getElementById('lessons');
+container.innerHTML = '';
+data.lessons.forEach(l => {
+const sec = document.createElement('section');
+sec.className = 'lesson';
+sec.innerHTML = `
+<h2>${l.title}</h2>
+<p class="short">${l.short}</p>
+<div class="content">${l.content_preview}</div>
+${l.premium ? '<p class="premium-note">यह एक प्रीमियम लेसन है — पूरा PDF खरीदें।</p>' : ''}
+`;
+container.appendChild(sec);
+});
+} catch (e) {
+console.error(e);
+}
+}
+renderLessons();
+</script>
+</body>
+</html>
